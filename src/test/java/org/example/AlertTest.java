@@ -26,9 +26,16 @@ public class AlertTest extends BaseTestClass {
         confirmBtn.click();
         String text = driver.switchTo().alert().getText();
         driver.switchTo().alert().accept();
+        String confirmText = driver.findElement(By.id("demo")).getText();
+        confirmBtn.click();
+        driver.switchTo().alert().dismiss();
+        String declineText = driver.findElement(By.id("demo")).getText();
+
 
         // Check if those texts are as expected
         Assertions.assertEquals("Press a button!", text);
+        Assertions.assertEquals("You pressed OK!", confirmText);
+        Assertions.assertEquals("You pressed Cancel!", declineText);
     }
 
     @Test
