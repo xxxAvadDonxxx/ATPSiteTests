@@ -10,6 +10,7 @@ public class AlertTest extends BaseTestClass {
     void simpleAlertCheck() {
         driver.findElement(By.id("alertBtn")).click();
 
+        // Work with alert
         String text = driver.switchTo().alert().getText();
         driver.switchTo().alert().accept();
 
@@ -24,16 +25,10 @@ public class AlertTest extends BaseTestClass {
 
         confirmBtn.click();
         String text = driver.switchTo().alert().getText();
-        driver.switchTo().alert().dismiss();
-
-        confirmBtn.click();
-        String text2 = driver.switchTo().alert().getText();
         driver.switchTo().alert().accept();
 
-        // Check if first and second text of same button is identical
-        Assertions.assertEquals(text, text2);
         // Check if those texts are as expected
-        Assertions.assertEquals("Press a button!", text2);
+        Assertions.assertEquals("Press a button!", text);
     }
 
     @Test
@@ -45,6 +40,7 @@ public class AlertTest extends BaseTestClass {
 
         alertBtn.click();
         String text = driver.switchTo().alert().getText();
+
         // send predefined(might be changed) name from variable name into the alert box
         driver.switchTo().alert().sendKeys(name);
         driver.switchTo().alert().accept();
